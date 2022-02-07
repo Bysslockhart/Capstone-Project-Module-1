@@ -1,2 +1,4 @@
 # Digital  Library
-Module 1 - Simple Library Program With Python
+Capstone Project for Module 1
+
+In this project, i made a simple library program that allows users to add, delete, borrow, and return books using python.
