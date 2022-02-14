@@ -7,6 +7,9 @@ bookList = [
     {"bookID" : "anadis", "bookName" : "An Antidote To Dissatisfaction", "availability" : "Available", "borrowedFor" : "Currently Available", "borrowedBy" : None}
     ]
 
+from datetime import date
+now = date.today()
+
 # Functions
 def fnSubMenu(fn, option):
     while True:
@@ -43,7 +46,7 @@ def fnShowBooks(unique = None):
         print('''    |   BookID   |              Book Title              |  Availability |     Borrowed For      |  Borrowed By  |''')
         for i in range (len(bookList)):
             print(f'''    |   {bookList[i]['bookID']}   | {bookList[i]['bookName']}\t| {bookList[i]['availability']}\t| {bookList[i]["borrowedFor"]}\t| {bookList[i]["borrowedBy"]}\t\t|    ''')
-
+            continue
     elif unique != None:
         for i in range (len(bookList)):
             if bookList[i]['bookID'] == unique:
@@ -94,6 +97,7 @@ def fnDeleteBooks():
             break
     else:
         print("\n    Book does not exist")
+    fnShowBooks()
 
 def fnBorrowBooks():
     fnShowBooks()
@@ -107,7 +111,7 @@ def fnBorrowBooks():
                     confirmation = input(f"    Are you sure you want to borrow '{bookList[i]['bookName']}' for {borrowTime} day(s)? (Y/N): ").capitalize()
                     if confirmation == "Y":
                         bookList[i]["availability"] = "Borrowed"
-                        bookList[i]["borrowedFor"] = (f"{borrowTime} days per 7-Feb")
+                        bookList[i]["borrowedFor"] = (f"{borrowTime} days per {now.day}-{now.strftime('%b')}")
                         bookList[i]["borrowedBy"] = borrowName
                         print(f"\n    You just borrowed '{bookList[i]['bookName']}' for {borrowTime} day(s). Make sure to return it in time!")
                         break
